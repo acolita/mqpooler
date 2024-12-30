@@ -1,4 +1,4 @@
-package br.com.acolita.consumer;
+package br.com.acolita.mqpooler;
 
 import com.ibm.mq.MQException;
 import com.ibm.mq.MQQueue;

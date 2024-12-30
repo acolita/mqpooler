@@ -1,4 +1,4 @@
-package br.com.acolita.consumer;
+package br.com.acolita.mqpooler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

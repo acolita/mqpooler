@@ -1,8 +1,8 @@
-package br.com.acolita.consumer;
+package br.com.acolita.mqpooler;
 
 import java.util.Objects;
 
-public class QueueDefinition {
+class QueueDefinition {
     private final String requestQueue;
     private final String responseQueue;
 

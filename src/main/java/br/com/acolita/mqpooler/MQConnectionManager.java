@@ -1,4 +1,4 @@
-package br.com.acolita.consumer;
+package br.com.acolita.mqpooler;
 
 import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
-public class MQConnectionManager {
+class MQConnectionManager {
     private static final Logger logger = LoggerFactory.getLogger(MQConnectionManager.class);
     private final Map<QueueDefinition, GenericObjectPool<MQConnectionTriple>> pools = new ConcurrentHashMap<>();
 
