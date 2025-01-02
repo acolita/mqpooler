@@ -16,10 +16,6 @@ class MQConnectionTriple implements AutoCloseable {
         this.responseQueue = responseQueue;
     }
 
-    public MQQueueManager getQueueManager() {
-        return queueManager;
-    }
-
     public MQQueue getRequestQueue() {
         return requestQueue;
     }

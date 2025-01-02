@@ -3,7 +3,7 @@ package br.com.acolita.mqpooler;
 import com.ibm.mq.MQException;
 import com.ibm.mq.MQGetMessageOptions;
 import com.ibm.mq.MQMessage;
-import com.ibm.mq.constants.MQConstants;
+import com.ibm.mq.constants.CMQC;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,7 +53,7 @@ class MQOperationsImpl implements MQOperations {
             replyMessage.correlationId = sendMessage.messageId;
 
             MQGetMessageOptions gmo = new MQGetMessageOptions();
-            gmo.options = MQConstants.MQGMO_WAIT;
+            gmo.options = CMQC.MQGMO_WAIT;
             gmo.waitInterval = (int)timeout.toMillis();
 
             try {

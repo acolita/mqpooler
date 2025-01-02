@@ -2,15 +2,12 @@ package br.com.acolita.mqpooler;
 
 import com.ibm.mq.MQQueue;
 import com.ibm.mq.MQQueueManager;
-import com.ibm.mq.constants.MQConstants;
+import com.ibm.mq.constants.CMQC;
 import org.apache.commons.pool2.BasePooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 class MQConnectionFactory extends BasePooledObjectFactory<MQConnectionTriple> {
-    private static final Logger logger = LoggerFactory.getLogger(MQConnectionFactory.class);
     private final QueueDefinition queueDef;
 
     public MQConnectionFactory(QueueDefinition queueDef) {
@@ -22,13 +19,13 @@ class MQConnectionFactory extends BasePooledObjectFactory<MQConnectionTriple> {
         MQQueueManager queueManager = new MQQueueManager("QM1");
         
         MQQueue requestQueue = queueManager.accessQueue(
-            queueDef.getRequestQueue(), 
-            MQConstants.MQOO_OUTPUT
+            queueDef.getRequestQueue(),
+                CMQC.MQOO_OUTPUT
         );
         
         MQQueue responseQueue = queueManager.accessQueue(
-            queueDef.getResponseQueue(), 
-            MQConstants.MQOO_INPUT_AS_Q_DEF
+            queueDef.getResponseQueue(),
+                CMQC.MQOO_INPUT_AS_Q_DEF
         );
 
         return new MQConnectionTriple(queueManager, requestQueue, responseQueue);
