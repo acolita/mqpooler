@@ -1,5 +1,7 @@
 # mqpooler
 
+`mqpooler` is a Java library that provides connection pooling for the IBM MQ client, enhancing the efficiency and scalability of message-driven applications. It offers seamless integration with Spring, allowing for automatic handling of connection lifecycles and dependency injection. Designed for ease of use, the library delivers a robust interface, `MQOperations`, that facilitates synchronous request-response interactions with MQ queues, ensuring efficient message processing with configurable timeout settings to meet the demands of enterprise environments.
+
 ## Prerequisites
 
 1. Java Development Kit (JDK) 8 or later.
