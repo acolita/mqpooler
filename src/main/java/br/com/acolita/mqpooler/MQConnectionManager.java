@@ -4,6 +4,7 @@ import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PreDestroy;
@@ -15,10 +16,13 @@ public class MQConnectionManager {
     private static final Logger logger = LoggerFactory.getLogger(MQConnectionManager.class);
     private final Map<QueueDefinition, GenericObjectPool<MQConnectionTriple>> pools = new ConcurrentHashMap<>();
 
+    @Value("${acolita.mqpooler.max-pool-size:20}")
+    private static int maxPoolSize;
+
     private GenericObjectPool<MQConnectionTriple> getOrCreatePool(QueueDefinition queueDef) {
         return pools.computeIfAbsent(queueDef, key -> {
             GenericObjectPoolConfig<MQConnectionTriple> config = new GenericObjectPoolConfig<>();
-            config.setMaxTotal(20);
+            config.setMaxTotal(maxPoolSize);
             config.setBlockWhenExhausted(false); // Don't block when pool is exhausted
             config.setTestOnBorrow(true);
             config.setTestOnReturn(true);

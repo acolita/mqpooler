@@ -6,6 +6,7 @@ import com.ibm.mq.constants.CMQC;
 import org.apache.commons.pool2.BasePooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
+import org.springframework.beans.factory.annotation.Value;
 
 class MQConnectionFactory extends BasePooledObjectFactory<MQConnectionTriple> {
     private final QueueDefinition queueDef;
@@ -14,9 +15,12 @@ class MQConnectionFactory extends BasePooledObjectFactory<MQConnectionTriple> {
         this.queueDef = queueDef;
     }
 
+    @Value("acolita.mqpooler.queue-manager-name")
+    static private String messageQueueName;
+
     @Override
     public MQConnectionTriple create() throws Exception {
-        MQQueueManager queueManager = new MQQueueManager("QM1");
+        MQQueueManager queueManager = new MQQueueManager(messageQueueName);
         
         MQQueue requestQueue = queueManager.accessQueue(
             queueDef.getRequestQueue(),
