@@ -3,28 +3,24 @@
 ## Prerequisites
 
 1. Java Development Kit (JDK) 8 or later.
-2. Apache Maven or Gradle for dependency management.
+2. Apache Maven for dependency management.
 3. IBM MQ libraries included in the project classpath.
-4. Spring Boot application configuration.
+4. Spring Boot application configuration (optional).
 
 ## Installation
 
-Include the necessary dependencies for Spring and IBM MQ in your `pom.xml` or `build.gradle` file. Below is an example for Maven:
+Include the necessary dependencies for mqpooler in your `pom.xml` file. Below is an example:
 
 ```xml
 <dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter</artifactId>
-</dependency>
-<dependency>
-    <groupId>com.ibm.mq</groupId>
-    <artifactId>mq-allclient</artifactId>
-    <version>9.2.0.0</version>
+    <groupId>br.com.acolita</groupId>
+    <artifactId>mqpooler</artifactId>
+    <version>0.1-SNAPSHOT</version>
 </dependency>
 ```
 
 ## Usage
-The `IBMRequestResponseService` is a Spring-managed service that provides access to `MQOperations`, which defines methods for synchronous request-response communication with IBM MQ.
+The `IBMRequestResponseService` is a service that provides access to `MQOperations`, which defines methods for synchronous request-response communication with IBM MQ.
 
 ### Key Components
 - **IBMRequestResponseService**: Manages connections and provides `MQOperations` for interacting with specific queues.
