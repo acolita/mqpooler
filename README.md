@@ -74,7 +74,7 @@ public class MQClient {
 
 ### 2. Sending a Request and Receiving a Response
 
-The `MQOperations` interface provides two methods for request-response communication:
+The `MQOperations` interface provides three methods for request-response communication:
 
 #### Default Timeout
 
@@ -90,6 +90,25 @@ Specify a timeout using the `Duration` class:
 import java.time.Duration;
 
 String response = mqOperations.requestResponse("Your Message Here", Duration.ofSeconds(30));
+```
+
+#### Advanced Message Configuration
+
+Use the `requestResponse` method with a `Consumer` to configure the `MQMessage`:
+
+```java
+import com.ibm.mq.MQMessage;
+
+String response = mqOperations.requestResponse(mqMessage -> {
+    try {
+        mqMessage.format = "MQSTR   ";
+        mqMessage.characterSet = 37;
+        mqMessage.replyToQueueName = "RESPONSE.QUEUE";
+        mqMessage.writeString("Custom Configured Message");
+    } catch (Exception e) {
+        throw new RuntimeException(e);
+    }
+});
 ```
 
 ### 3. Connection Pooling
