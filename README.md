@@ -7,7 +7,7 @@
 1. Java Development Kit (JDK) 8 or later.
 2. Apache Maven for dependency management.
 3. IBM MQ libraries included in the project classpath.
-4. Spring Boot application configuration (optional).
+4. Spring Boot application configuration.
 
 ## Installation
 
