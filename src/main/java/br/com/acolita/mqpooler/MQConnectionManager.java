@@ -23,8 +23,8 @@ public class MQConnectionManager {
     private static final Logger logger = LoggerFactory.getLogger(MQConnectionManager.class);
     private final Map<QueueDefinition, GenericObjectPool<MQConnectionTriple>> pools = new ConcurrentHashMap<>();
 
-    @Value("${acolita.mqpooler.max-pool-size:20}")
-    private static int maxPoolSize;
+    @Value("${acolita.mqpooler.max-pool-size}")
+    private int maxPoolSize;
 
     /**
      * Retrieves or creates a new object pool for a specific queue definition.

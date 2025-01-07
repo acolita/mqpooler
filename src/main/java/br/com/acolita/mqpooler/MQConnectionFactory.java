@@ -15,8 +15,8 @@ class MQConnectionFactory extends BasePooledObjectFactory<MQConnectionTriple> {
         this.queueDef = queueDef;
     }
 
-    @Value("acolita.mqpooler.queue-manager-name")
-    static private String messageQueueName;
+    @Value("${acolita.mqpooler.queue-manager-name}")
+    private String messageQueueName;
 
     @Override
     public MQConnectionTriple create() throws Exception {
