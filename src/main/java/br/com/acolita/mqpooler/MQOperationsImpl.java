@@ -61,7 +61,7 @@ class MQOperationsImpl implements MQOperations {
     private void prepareDefaultMessage(MQMessage sendMessage, String message, Duration timeout) throws Exception {
         sendMessage.format = "MQSTR   ";
         sendMessage.characterSet = 37;
-        sendMessage.expiry = (int) timeout.getSeconds();
+        sendMessage.expiry = (int) timeout.getSeconds()*10;
         sendMessage.correlationId = "AMQ!NEW_SESSION_CORRELID".getBytes();
         sendMessage.messageType = 1;
         sendMessage.replyToQueueName = queueDef.getResponseQueue();
@@ -83,7 +83,8 @@ class MQOperationsImpl implements MQOperations {
         MQGetMessageOptions gmo = new MQGetMessageOptions();
         gmo.options = CMQC.MQGMO_WAIT;
         if (sendMessage.expiry != -1) {
-            gmo.waitInterval = sendMessage.expiry;
+            // expiry is in tenths of a second and waitInterval in ms
+            gmo.waitInterval = sendMessage.expiry * 100;
         }
         try {
             triple.getResponseQueue().get(replyMessage, gmo);

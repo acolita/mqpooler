@@ -6,21 +6,22 @@ import com.ibm.mq.constants.CMQC;
 import org.apache.commons.pool2.BasePooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
-import org.springframework.beans.factory.annotation.Value;
+
+import java.util.Hashtable;
 
 class MQConnectionFactory extends BasePooledObjectFactory<MQConnectionTriple> {
     private final QueueDefinition queueDef;
+    private MQConnectionConfig MQConnectionConfig;
 
-    public MQConnectionFactory(QueueDefinition queueDef) {
+    public MQConnectionFactory(QueueDefinition queueDef, MQConnectionConfig MQConnectionConfig) {
         this.queueDef = queueDef;
+        this.MQConnectionConfig = MQConnectionConfig;
     }
-
-    @Value("${acolita.mqpooler.queue-manager-name}")
-    private String messageQueueName;
 
     @Override
     public MQConnectionTriple create() throws Exception {
-        MQQueueManager queueManager = new MQQueueManager(messageQueueName);
+        final Hashtable<String, Object> properties = MQConnectionConfig.getPropertiesTable();
+        MQQueueManager queueManager = new MQQueueManager(MQConnectionConfig.getMessageQueueName(), properties);
         
         MQQueue requestQueue = queueManager.accessQueue(
             queueDef.getRequestQueue(),

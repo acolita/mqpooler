@@ -4,6 +4,7 @@ import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +27,9 @@ public class MQConnectionManager {
     @Value("${acolita.mqpooler.max-pool-size}")
     private int maxPoolSize;
 
+    @Autowired
+    MQConnectionConfig MQConnectionConfig;
+
     /**
      * Retrieves or creates a new object pool for a specific queue definition.
      * This method configures the pool with the predefined settings, including
@@ -36,13 +40,14 @@ public class MQConnectionManager {
      */
     private GenericObjectPool<MQConnectionTriple> getOrCreatePool(QueueDefinition queueDef) {
         return pools.computeIfAbsent(queueDef, key -> {
+            System.out.println("MAX POOL SIZEEEEEE IN LIB: " + maxPoolSize);
             GenericObjectPoolConfig<MQConnectionTriple> config = new GenericObjectPoolConfig<>();
             config.setMaxTotal(maxPoolSize);
             config.setBlockWhenExhausted(false); // Don't block when pool is exhausted
             config.setTestOnBorrow(true);
             config.setTestOnReturn(true);
 
-            return new GenericObjectPool<>(new MQConnectionFactory(key), config);
+            return new GenericObjectPool<>(new MQConnectionFactory(key, MQConnectionConfig), config);
         });
     }
 
@@ -79,7 +84,7 @@ public class MQConnectionManager {
         }
 
         // If pool is exhausted or borrowing fails, create new instance
-        return new MQConnectionFactory(queueDef).create();
+        return new MQConnectionFactory(queueDef, MQConnectionConfig).create();
     }
 
     /**

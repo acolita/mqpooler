@@ -34,11 +34,21 @@ The `IBMRequestResponseService` is a service that provides access to `MQOperatio
 
 - `acolita.mqpooler.max-pool-size` (default: 20): Specifies the maximum number of connections in the pool.
 - `acolita.mqpooler.queue-manager-name`: The name of the MQ Queue Manager used for connections.
+- `acolita.mqpooler.properties.host-name`: The hostname of the MQ server.
+- `acolita.mqpooler.properties.port`: The port of the MQ server.
+- `acolita.mqpooler.properties.user-id`: The user ID for authentication.
+- `acolita.mqpooler.properties.password`: The password for authentication.
+- `acolita.mqpooler.properties.channel`: The MQ channel name.
 
 #### Example Configuration:
 ```properties
 acolita.mqpooler.max-pool-size=30
 acolita.mqpooler.queue-manager-name=QM1
+acolita.mqpooler.properties.host-name=mq.example.com
+acolita.mqpooler.properties.port=1414
+acolita.mqpooler.properties.user-id=admin
+acolita.mqpooler.properties.password=secret
+acolita.mqpooler.properties.channel=DEV.APP.SVRCONN
 ```
 
 ### 1. Autowiring the IBMRequestResponseService
