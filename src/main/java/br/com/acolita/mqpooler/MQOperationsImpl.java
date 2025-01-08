@@ -59,11 +59,11 @@ class MQOperationsImpl implements MQOperations {
     }
 
     private void prepareDefaultMessage(MQMessage sendMessage, String message, Duration timeout) throws Exception {
-        sendMessage.format = "MQSTR   ";
+        sendMessage.format = CMQC.MQFMT_STRING;
         sendMessage.characterSet = 37;
         sendMessage.expiry = (int) timeout.getSeconds()*10;
         sendMessage.correlationId = "AMQ!NEW_SESSION_CORRELID".getBytes();
-        sendMessage.messageType = 1;
+        sendMessage.messageType = CMQC.MQMT_REQUEST;
         sendMessage.replyToQueueName = queueDef.getResponseQueue();
         sendMessage.writeString(message);
     }
