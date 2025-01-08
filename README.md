@@ -111,7 +111,7 @@ import com.ibm.mq.MQMessage;
 
 String response = mqOperations.requestResponse(mqMessage -> {
     try {
-        mqMessage.format = "MQSTR   ";
+        mqMessage.format = CMQC.MQFMT_STRING;
         mqMessage.characterSet = 37;
         mqMessage.replyToQueueName = "RESPONSE.QUEUE";
         mqMessage.writeString("Custom Configured Message");
