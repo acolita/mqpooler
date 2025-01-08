@@ -30,9 +30,9 @@ The `IBMRequestResponseService` is a service that provides access to `MQOperatio
 - **MQConnectionManager**: Handles connection pooling for MQ operations, using configurable properties for pool management.
 
 ### Configurable Properties
-`mqpooler` provides the following configurable properties, which can be set in your application.properties or application.yml file:
+`mqpooler` requires the following configurable properties, which can be set in your application.properties or application.yml file:
 
-- `acolita.mqpooler.max-pool-size` (default: 20): Specifies the maximum number of connections in the pool.
+- `acolita.mqpooler.max-pool-size`: Specifies the maximum number of connections in the pool.
 - `acolita.mqpooler.queue-manager-name`: The name of the MQ Queue Manager used for connections.
 - `acolita.mqpooler.properties.host-name`: The hostname of the MQ server.
 - `acolita.mqpooler.properties.port`: The port of the MQ server.
