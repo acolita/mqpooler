@@ -17,7 +17,7 @@ Include the necessary dependencies for mqpooler in your `pom.xml` file. Below is
 <dependency>
     <groupId>br.com.acolita</groupId>
     <artifactId>mqpooler</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>1.0</version>
 </dependency>
 ```
 
