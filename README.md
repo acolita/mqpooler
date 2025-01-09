@@ -1,3 +1,9 @@
+![License](https://img.shields.io/github/license/acolita/mqpooler)
+![Maven Central](https://img.shields.io/maven-central/v/br.com.acolita/mqpooler)
+![GitHub issues](https://img.shields.io/github/issues/acolita/mqpooler)
+![Java Version](https://img.shields.io/badge/Java-8%2B-blue)
+![GitHub last commit](https://img.shields.io/github/last-commit/acolita/mqpooler)
+
 # mqpooler
 
 `mqpooler` is a Java library that provides connection pooling for the IBM MQ client, enhancing the efficiency and scalability of message-driven applications. It offers seamless integration with Spring, allowing for automatic handling of connection lifecycles and dependency injection. Designed for ease of use, the library delivers a robust interface, `MQOperations`, that facilitates synchronous request-response interactions with MQ queues, ensuring efficient message processing with configurable timeout settings to meet the demands of enterprise environments.
